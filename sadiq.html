@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fauji Traders | Building Materials, Paints, Sanitary & Electrical</title>
+    <meta name="description" content="Fauji Traders - Complete Building Materials, Paints, Sanitary, Electrical Wires, Pipes, and Hardware Store.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        /* ===========================
+           VARIABLES & THEME CONFIG
+        =========================== */
+        :root {
+            --bg-main: #060913;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --bg-header: rgba(6, 9, 19, 0.92);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --text-sub: #cbd5e1;
+            --accent-cyan: #00e5ff;
+            --accent-green: #22c55e;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --glow-shadow: rgba(0, 229, 255, 0.2);
+            --transition-standard: 0.3s ease;
+        }
+
+        [data-theme="light"] {
+            --bg-main: #f8fafc;
+            --bg-card: rgba(0, 0, 0, 0.04);
+            --bg-header: rgba(248, 250, 252, 0.95);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --text-sub: #334155;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --glow-shadow: rgba(30, 64, 175, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 229, 255, 0.05);
+            filter: blur(40px);
+            animation: float 22s infinite linear;
+        }
+
+        .bg-animation span:nth-child(1) { width: 300px; height: 300px; top: 10%; left: 15%; }
+        .bg-animation span:nth-child(2) { width: 450px; height: 450px; top: 60%; left: 65%; animation-duration: 28s; }
+        .bg-animation span:nth-child(3) { width: 200px; height: 200px; top: 40%; left: 45%; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        /* Header & Navbar */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 6%;
+            backdrop-filter: blur(15px);
+            background: var(--bg-header);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: var(--transition-standard);
+        }
+
+        .navbar a:hover, .navbar a.active {
+            color: var(--accent-cyan);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .action-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 16px;
+            padding: 10px 14px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition-standard);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-btn:hover {
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+        }
+
+        .cart-badge {
+            background: var(--accent-cyan);
+            color: #000;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 50%;
+            padding: 2px 7px;
+        }
+
+        .menu-icon { display: none; }
+
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 130px 6% 40px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent-cyan);
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid var(--accent-cyan);
+            margin-bottom: 20px;
+        }
+
+        .brand-title {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--accent-cyan), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 22px;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+
+        .cursor-blink {
+            color: var(--accent-cyan);
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .hero-text p {
+            color: var(--text-sub);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-whatsapp {
+            background: var(--accent-green);
+            color: #fff;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .btn:hover { transform: translateY(-4px); }
+
+        .hero-card-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hero-feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            border-radius: 16px;
+        }
+
+        .card-icon {
+            font-size: 28px;
+            color: var(--accent-cyan);
+            margin-bottom: 8px;
+        }
+
+        /* Dashboard & Catalog Section */
+        .section { padding: 60px 6%; }
+
+        .title {
+            text-align: center;
+            font-size: 34px;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--accent-cyan), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 40px;
+        }
+
+        /* Filter & Search Bar */
+        .catalog-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 18px 12px 45px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--text-main);
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .cat-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 13px;
+            white-space: nowrap;
+            transition: var(--transition-standard);
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            border-color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 22px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 12px 30px var(--glow-shadow);
+        }
+
+        .product-img-box {
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            position: relative;
+        }
+
+        .product-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-img-box img {
+            transform: scale(1.08);
+        }
+
+        .product-category {
+            font-size: 11px;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .product-card h3 {
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .product-card p {
+            color: var(--text-sub);
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .add-cart-btn {
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: var(--transition-standard);
+            width: 100%;
+        }
+
+        .add-cart-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+        }
+
+        /* Show More Button Area */
+        .show-more-container {
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .show-more-btn {
+            background: transparent;
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-standard);
+        }
+
+        .show-more-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 20px var(--glow-shadow);
+        }
+
+        /* Management Section */
+        .manager-card {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 35px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .manager-avatar-box {
+            width: 130px;
+            height: 130px;
+            min-width: 130px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+        }
+
+        .manager-avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: var(--accent-cyan);
+            color: #000;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .manager-details h3 { font-size: 24px; margin-bottom: 4px; }
+        .manager-details p { color: var(--text-sub); font-size: 14px; margin-bottom: 15px; }
+
+        /* Slide-out Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 420px;
+            height: 100vh;
+            background: var(--bg-main);
+            border-left: 1px solid var(--border-color);
+            z-index: 2000;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            transition: right 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+        }
+
+        .cart-modal.open { right: 0; }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-card);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .item-info h4 { font-size: 14px; }
+        .item-info p { font-size: 12px; color: var(--text-muted); }
+
+        .remove-item {
+            color: #ef4444;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .cart-footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 50px;
+            background: var(--accent-green);
+            color: #fff;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 25px;
+            text-align: center;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text p { margin: 0 auto 25px; }
+            .buttons { justify-content: center; }
+            .manager-card { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 768px) {
+            .menu-icon { display: block; }
+            .navbar {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-main);
+                border-bottom: 1px solid var(--border-color);
+                flex-direction: column;
+                padding: 20px 0;
+                gap: 15px;
+                text-align: center;
+                display: none;
+            }
+            .navbar.active { display: flex; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-animation" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <header class="header">
+        <a href="#home" class="logo">
+            <i class="fa-solid fa-shield-halved"></i> FAUJI TRADERS
+        </a>
+
+        <nav class="navbar" id="navbar">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#dashboard" class="nav-link">Products Catalog</a>
+            <a href="#management" class="nav-link">Management</a>
+            <a href="https://wa.me/923160909859" target="_blank" class="nav-link">WhatsApp</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="action-btn" id="cart-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cart-count">0</span>
+            </button>
+            <button class="action-btn" id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <button class="action-btn menu-icon" id="menu-icon" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="badge"><i class="fa-solid fa-award"></i> Verified General & Building Supplies</span>
+                    <h1 class="brand-title">FAUJI TRADERS</h1>
+                    <h2 class="tagline">Suppliers of <br><span id="typing"></span><span class="cursor-blink">|</span></h2>
+                    <p class="description">
+                        Your trusted wholesale & retail supply hub. Complete solutions for Paints, Sanitary, Electrical Wires, Building Materials, and Pipes.
+                    </p>
+
+                    <div class="buttons">
+                        <a href="https://wa.me/923160909859" target="_blank" class="btn btn-whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp (03160909859)
+                        </a>
+                        <a href="#dashboard" class="btn btn-outline">Explore Catalog <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="hero-card-container">
+                    <div class="hero-feature-card">
+                        <div class="card-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                        <h3>Manager Contact</h3>
+                        <p>Direct Order Desk: <strong>03160909859</strong></p>
+                    </div>
+                    <div class="hero-feature-card">
+                        <div class="card-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                        <h3>Fast Site Delivery</h3>
+                        <p>Bulk delivery available straight to your construction site or business.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="section">
+            <h2 class="title">Product Catalog & Dashboard</h2>
+            <p class="subtitle">10+ items per category. Filter, search, and load more products below.</p>
+
+            <div class="catalog-controls">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Search pakcem, 33 pr1 bricks, paints, wires, cement, pipes...">
+                </div>
+
+                <div class="category-buttons">
+                    <button class="cat-btn active" data-filter="all">All Items</button>
+                    <button class="cat-btn" data-filter="paints">Paints</button>
+                    <button class="cat-btn" data-filter="sanitary">Sanitary & Bath</button>
+                    <button class="cat-btn" data-filter="electrical">Electrical</button>
+                    <button class="cat-btn" data-filter="building">Building Materials</button>
+                    <button class="cat-btn" data-filter="plumbing">Pipes & Plumbing</button>
+                </div>
+            </div>
+
+            <div class="products-grid" id="products-container">
+            </div>
+
+            <div class="show-more-container" id="show-more-wrapper">
+                <button class="show-more-btn" id="show-more-btn">
+                    <i class="fa-solid fa-plus"></i> Show More Items
+                </button>
+            </div>
+        </section>
+
+        <section id="management" class="section">
+            <h2 class="title">Store Management</h2>
+
+            <div class="manager-card">
+                <div class="manager-avatar-box">
+                    <img src="IMG_1056.JPG" alt="Zulqarnain Haider" onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Zulqarnain';">
+                </div>
+                <div class="manager-details">
+                    <h3>Zulqarnain Haider</h3>
+                    <span class="role-badge">General Manager</span>
+                    <p>
+                        Managing procurement, client inquiries, and logistics at Fauji Traders. Get genuine Pakcem Cement, 33 PR1 Special Bricks, paints, sanitary fixtures, electrical products, and pipes at market rates.
+                    </p>
+                    <a href="https://wa.me/923160909859?text=Hello%20Manager%20Zulqarnain%20Haider,%20I%20have%20an%20inquiry." target="_blank" class="btn btn-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> Contact Manager (03160909859)
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Your Inquiries Cart</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+
+        <div class="cart-items" id="cart-items">
+        </div>
+
+        <div class="cart-footer">
+            <button class="checkout-btn" id="whatsapp-order-btn">
+                <i class="fa-brands fa-whatsapp"></i> Send Order to Manager (WhatsApp)
+            </button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 <strong>FAUJI TRADERS</strong> | Manager: Zulqarnain Haider (WhatsApp: 03160909859)</p>
+    </footer>
+
+    <script>
+        // ====================================================
+        // PRODUCTS LIST UPDATED TO USE 'images.jpg'
+        // ====================================================
+        const products = [
+            // --- PAINTS (10 Items) ---
+            { id: 101, category: "paints", name: "Brighto Plastic Emulsion", desc: "Smooth interior wall paint bucket.", img: "paints.jpg" },
+            { id: 102, category: "paints", name: "Brighto Weather Sheet", desc: "Outdoor paint with maximum sun & rain protection.", img: "paint.2.png" },
+            { id: 103, category: "paints", name: "Synthetic Enamel Paint", desc: "High-gloss durability paint for metal & wood surfaces.", img: "paint.3.webp" },
+            { id: 104, category: "paints", name: "Wall Primer Sealer", desc: "Deep penetrating base coat to lock wall moisture.", img: "paint.4.webp" },
+            { id: 105, category: "paints", name: "Wall Putty Coating", desc: "Ultra-fine surface filling compound for smooth walls.", img: "paint.5.webp" },
+            { id: 106, category: "paints", name: "Texture Exterior Paint", desc: "Decorative patterned finish for outer house walls.", img: "paint.6.jpg" },
+            { id: 107, category: "paints", name: "Anti-Rust Primer", desc: "Red oxide anti-corrosion coating for steel structures.", img: "paint.7.jpg" },
+            { id: 108, category: "paints", name: "Wood Stainer & Polish", desc: "Rich wood grain varnish for doors & furniture.", img: "paint.8.jpg" },
+            { id: 109, category: "paints", name: "Matte Finish Interior", desc: "Velvety non-reflective interior room paint.", img: "paint.9.webp" },
+            { id: 110, category: "paints", name: "Floor & Concrete Paint", desc: "Heavy-duty abrasion resistant paint for concrete.", img: "paint.10.jpg" },
+
+            // --- SANITARY & BATH (10 Items) ---
+            { id: 201, category: "sanitary", name: "Luxury Bath Vanity Set", desc: "Modern ceramic basin with floating cabinet.", img: "bath.1.jpg" },
+            { id: 202, category: "sanitary", name: "Ceramic Commode Toilet", desc: "Dual flush water-saving toilet bowl set.", img: "bath.2.jpg" },
+            { id: 203, category: "sanitary", name: "Chrome Shower Mixer", desc: "Solid brass rainfall shower head & mixer set.", img: "bath.3.jpg" },
+            { id: 204, category: "sanitary", name: "Single Lever Water Tap", desc: "Durable stainless steel mixer tap for sinks.", img: "bath.4.jpg" },
+            { id: 205, category: "sanitary", name: "Pedestal Sink Basin", desc: "Classic freestanding porcelain bathroom sink.", img: "bath.5.jpg" },
+            { id: 206, category: "sanitary", name: "Stainless Kitchen Sink", desc: "Double bowl anti-scratch kitchen drainer sink.", img: "bath.6.jpg" },
+            { id: 207, category: "sanitary", name: "Bath Mirror Cabinet", desc: "LED illuminated mirror with storage space.", img: "bath.7.jpg" },
+            { id: 208, category: "sanitary", name: "Brass Bidet Spray Kit", desc: "High pressure hygienic hand shower set.", img: "bath.8.jpg" },
+            { id: 209, category: "sanitary", name: "Floor Drain Trap", desc: "Anti-odor stainless steel tile insert floor strainer.", img: "bath.9.avif" },
+            { id: 210, category: "sanitary", name: "Sanitary Pipe", desc: "Ergonomic freestanding luxury sanitary pipe.", img: "bath.10.jpg" },
+
+            // --- ELECTRICAL (10 Items) ---
+            { id: 301, category: "electrical", name: "Copper Wires & Cables", desc: "High conductivity insulated pure copper electric wires.", img: "e.1.jpg" },
+            { id: 302, category: "electrical", name: "Ceiling Fans & LED Lights", desc: "Energy-saving ceiling fans & bright interior LED panels.", img: "e.2.jpg" },
+            { id: 303, category: "electrical", name: "Circuit Breakers & Boards", desc: "Heavy duty main breakers and distribution boxes.", img: "electric.jpg" },
+            { id: 304, category: "electrical", name: "Smart Wall Switches", desc: "Touch sensor luxury wall switch plates.", img: "e.3.webp" },
+            { id: 305, category: "electrical", name: "PVC Conduit Pipes", desc: "Insulated electrical ducting pipes for wall wiring.", img: "e.4.jpg" },
+            { id: 306, category: "electrical", name: "Exhaust Ventilation Fan", desc: "High speed low-noise bathroom & kitchen fan.", img: "e.5.jpg" },
+            { id: 307, category: "electrical", name: "LED Outdoor Floodlight", desc: "Waterproof IP66 high power building floodlight.", img: "e.6.jpg" },
+            { id: 308, category: "electrical", name: "Industrial Socket Outlets", desc: "Heavy duty power plugs & extension sockets.", img: "e.7.jpg" },
+            { id: 309, category: "electrical", name: "Voltage Stabilizer Unit", desc: "Automatic voltage protector for home appliances.", img: "e.8.jpg" },
+            { id: 310, category: "electrical", name: "Electrical Junction Boxes", desc: "Flame retardant modular wiring boxes.", img: "e.9.jpg" },
+
+            // --- BUILDING MATERIALS (10 Items) ---
+            { id: 401, category: "building", name: "Pakcem / Bestway Cement", desc: "Fresh 50kg Portland cement bags for high strength foundations.", img: "b.1.jpg" },
+            { id: 402, category: "building", name: "33 PR1 Special Bricks", desc: "Top quality 33 PR1 kiln-baked solid construction bricks.", img: "bricks.jpg" },
+            { id: 403, category: "building", name: "PR1 Red Bricks Pile", desc: "High temperature baked dense red masonry bricks.", img: "b.3.jpg" },
+            { id: 404, category: "building", name: "Steel Sarya (Grade-60)", desc: "Deformed steel rebar for reinforced concrete structures.", img: "b.4.jpg" },
+            { id: 405, category: "building", name: "Washed River Sand", desc: "Clean fine river sand ideal for plaster and concrete work.", img: "b.5.jpg" },
+            { id: 406, category: "building", name: "Crushed Stone Aggregate", desc: "Graded gravel stone aggregate for concrete slabs.", img: "b.6.jpg" },
+            { id: 407, category: "building", name: "Concrete Hollow Pipe", desc: "High density load-bearing hollow concrete pipes.", img: "b.7.jpg" },
+            { id: 408, category: "building", name: "Waterproofing Chemical", desc: "Liquid water repellent admixture for roof slabs.", img: "b.8.jpg" },
+            { id: 409, category: "building", name: "Tile Adhesive Mortar", desc: "High bond flexible cementitious adhesive for floor tiles.", img: "b.9.jpg" },
+            { id: 410, category: "building", name: "Steel Binding Wire", desc: "Annealed iron wire for securing rebar structures.", img: "b.10.jpg" },
+
+            // --- PIPES & PLUMBING (10 Items) ---
+            { id: 501, category: "plumbing", name: "PPRC Water Pipes & Joints", desc: "Leak-proof hot and cold pressure water supply pipes.", img: "p.1.jpg" },
+            { id: 502, category: "plumbing", name: "PVC Soil Drainage Pipes", desc: "Heavy-duty PVC pipes for waste & sewage discharge.", img: "p.2.jpg" },
+            { id: 503, category: "plumbing", name: "HDPE Flexible Tubing", desc: "High-density underground water main supply line pipe.", img: "p.3.jpg" },
+            { id: 504, category: "plumbing", name: "CPVC Hot Water Fittings", desc: "Heat-resistant CPVC elbow, tee, and coupling connectors.", img: "p.4.jpg" },
+            { id: 505, category: "plumbing", name: "Brass Gate Valves", desc: "Heavy forged brass water pressure control valves.", img: "p.5.jpg" },
+            { id: 506, category: "plumbing", name: "Flexible Hose Connectors", desc: "Stainless steel braided water inlet hoses.", img: "p.6.jpg" },
+            { id: 507, category: "plumbing", name: "Submersible Water Pump", desc: "Heavy duty electric pump for borewells & water tanks.", img: "p.7.jpg" },
+            { id: 508, category: "plumbing", name: "PVC Solvent Cement Glue", desc: "Industrial high strength pipe joint bonding adhesive.", img: "p.8.jpg" },
+            { id: 509, category: "plumbing", name: "Teflon Thread Tape", desc: "Leak prevention PTFE sealing tape for threaded pipe joints.", img: "p.9.jpg" },
+            { id: 510, category: "plumbing", name: "Overhead Water Storage Tank", desc: "Multi-layer UV protected food grade water tank.", img: "p.10.jpg" }
+        ];
+
+        let cart = [];
+        let itemsToShow = 8;
+        let currentFilteredList = [];
+
+        const container = document.getElementById("products-container");
+        const showMoreBtn = document.getElementById("show-more-btn");
+        const showMoreWrapper = document.getElementById("show-more-wrapper");
+
+        // Dynamic fallback generator
+        function createDynamicFallbackSVG(title, category) {
+            const encodedTitle = encodeURIComponent(title);
+            const encodedCat = encodeURIComponent(category.toUpperCase());
+            return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180" viewBox="0 0 300 180"><rect width="100%" height="100%" fill="%230f172a"/><rect x="10" y="10" width="280" height="160" rx="10" fill="none" stroke="%2300e5ff" stroke-width="1.5" stroke-dasharray="6,4"/><text x="50%" y="45%" fill="%2300e5ff" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle" letter-spacing="2">${encodedCat}</text><text x="50%" y="65%" fill="%23ffffff" font-size="13" font-family="sans-serif" font-weight="600" text-anchor="middle">${encodedTitle}</text></svg>`;
+        }
+
+        function renderProducts() {
+            container.innerHTML = "";
+
+            if(currentFilteredList.length === 0) {
+                container.innerHTML = `<p style="grid-column: 1/-1; text-align:center; color: var(--text-muted); padding: 40px 0;">No products found matching your search.</p>`;
+                showMoreWrapper.style.display = "none";
+                return;
+            }
+
+            const visibleItems = currentFilteredList.slice(0, itemsToShow);
+
+            visibleItems.forEach(prod => {
+                const card = document.createElement("div");
+                card.className = "product-card";
+                
+                const fallbackSVG = createDynamicFallbackSVG(prod.name, prod.category);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="product-img-box">
+                            <img src="${prod.img}" 
+                                 alt="${prod.name}" 
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='${fallbackSVG}';">
+                        </div>
+                        <span class="product-category">${prod.category}</span>
+                        <h3>${prod.name}</h3>
+                        <p>${prod.desc}</p>
+                    </div>
+                    <div class="product-footer">
+                        <button class="add-cart-btn" onclick="addToCart(${prod.id})">
+                            <i class="fa-solid fa-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            if (currentFilteredList.length <= itemsToShow) {
+                showMoreWrapper.style.display = "none";
+            } else {
+                showMoreWrapper.style.display = "block";
+                showMoreBtn.innerHTML = `<i class="fa-solid fa-plus"></i> Show More Items (${currentFilteredList.length - visibleItems.length} remaining)`;
+            }
+        }
+
+        showMoreBtn.addEventListener("click", () => {
+            itemsToShow += 8;
+            renderProducts();
+        });
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if(product) {
+                cart.push(product);
+                updateCartUI();
+                openCart();
+            }
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            document.getElementById("cart-count").innerText = cart.length;
+            const cartContainer = document.getElementById("cart-items");
+            cartContainer.innerHTML = "";
+
+            if(cart.length === 0) {
+                cartContainer.innerHTML = `<p style="text-align:center; color: var(--text-muted); padding: 20px 0;">Your cart is empty.</p>`;
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                const div = document.createElement("div");
+                div.className = "cart-item";
+                div.innerHTML = `
+                    <div class="item-info">
+                        <h4>${item.name}</h4>
+                        <p>${item.category.toUpperCase()}</p>
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart(${index})">&times;</button>
+                `;
+                cartContainer.appendChild(div);
+            });
+        }
+
+        const cartModal = document.getElementById("cart-modal");
+        function openCart() { cartModal.classList.add("open"); }
+        function closeCartModal() { cartModal.classList.remove("open"); }
+
+        document.getElementById("cart-btn").addEventListener("click", openCart);
+        document.getElementById("close-cart").addEventListener("click", closeCartModal);
+
+        document.getElementById("whatsapp-order-btn").addEventListener("click", () => {
+            if(cart.length === 0) {
+                alert("Your cart is empty! Please add some products first.");
+                return;
+            }
+
+            let message = "Hello Manager Zulqarnain Haider (Fauji Traders),\nI would like to inquire/order the following items:\n\n";
+            cart.forEach((item, idx) => {
+                message += `${idx + 1}. ${item.name} (${item.category.toUpperCase()})\n`;
+            });
+            message += "\nPlease send me price details and delivery availability.";
+
+            const managerNumber = "923160909859";
+            const url = `https://wa.me/${managerNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, "_blank");
+        });
+
+        const searchInput = document.getElementById("search-input");
+        const categoryBtns = document.querySelectorAll(".cat-btn");
+
+        function filterProducts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const activeCategory = document.querySelector(".cat-btn.active").getAttribute("data-filter");
+
+            itemsToShow = 8;
+
+            currentFilteredList = products.filter(p => {
+                const matchesCategory = activeCategory === "all" || p.category === activeCategory;
+                const matchesSearch = p.name.toLowerCase().includes(searchTerm) || p.desc.toLowerCase().includes(searchTerm);
+                return matchesCategory && matchesSearch;
+            });
+
+            renderProducts();
+        }
+
+        searchInput.addEventListener("input", filterProducts);
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                categoryBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                filterProducts();
+            });
+        });
+
+        const words = [
+            "Pakcem & Bestway Cement",
+            "33 PR1 Special Bricks",
+            "Brighto Paints & Finishes",
+            "Luxury Sanitary & Bath Ware",
+            "Copper Electrical Wires",
+            "PPRC & PVC Plumbing Pipes"
+        ];
+        let wordIndex = 0, charIndex = 0, isDeleting = false;
+        const typingText = document.getElementById("typing");
+
+        function typeEffect() {
+            if (!typingText) return;
+            let currentWord = words[wordIndex];
+
+            if (isDeleting) {
+                typingText.textContent = currentWord.substring(0, charIndex--);
+            } else {
+                typingText.textContent = currentWord.substring(0, charIndex++);
+            }
+
+            let speed = isDeleting ? 30 : 70;
+            if (!isDeleting && charIndex === currentWord.length + 1) {
+                speed = 1800;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                speed = 400;
+            }
+            setTimeout(typeEffect, speed);
+        }
+
+        document.getElementById("theme-toggle").addEventListener("click", () => {
+            const currentTheme = document.body.getAttribute("data-theme");
+            if (currentTheme === "light") {
+                document.body.removeAttribute("data-theme");
+            } else {
+                document.body.setAttribute("data-theme", "light");
+            }
+        });
+
+        const menuIcon = document.getElementById("menu-icon");
+        const navbar = document.getElementById("navbar");
+        menuIcon.addEventListener("click", () => {
+            navbar.classList.toggle("active");
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            currentFilteredList = products;
+            renderProducts();
+            typeEffect();
+        });
+    </script>
+</body>
+
+</html>
